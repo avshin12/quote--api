@@ -9,12 +9,14 @@ const PORT = process.env.PORT || 4001;
 
 app.use(express.static('public'));
 
+// GET a random quote
 app.get('/api/quotes/random', (req, res) => {
   res.send({
     quote: getRandomElement(quotes)
   });
 });
 
+// GET quote by person
 app.get('/api/quotes', (req, res) => {
   if (req.query.person !== undefined) {
     const quotesByPerson = quotes.filter(quote => quote.person === req.query.person);
@@ -28,6 +30,7 @@ app.get('/api/quotes', (req, res) => {
   }
 });
 
+// POST new quote & author
 app.post('/api/quotes', (req, res) => {
   const newQuote = {
     quote: req.query.quote,
