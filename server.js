@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const app = express();
 
 const { quotes } = require('./data');
@@ -8,6 +9,8 @@ const { getRandomElement } = require('./utils');
 const PORT = process.env.PORT || 4001;
 
 app.use(express.static('public'));
+
+app.use(cors());
 
 // GET a random quote
 app.get('/api/quotes/random', (req, res) => {
